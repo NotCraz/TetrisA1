@@ -442,6 +442,7 @@ MonoBehaviour:
   - {fileID: 6865617601182680905, guid: 2dd6e24570f367f4bbe895a8b3570fa3, type: 3}
   - {fileID: 6865617601182680905, guid: c7ad5bb178027364da85a4b6eb52ad31, type: 3}
   - {fileID: 6865617601182680905, guid: d26f6f2292f645c4bb40ea0793d087ee, type: 3}
+  - {fileID: 6865617601182680905, guid: 53a85c25fd501e144a87378375485401, type: 3}
 --- !u!4 &443640722
 Transform:
   m_ObjectHideFlags: 0
