@@ -88,10 +88,10 @@ public class TetrisPiece : MonoBehaviour
         {
             Vector2Int position = Vector2Int.RoundToInt(block.position);
 
-            // Ensure the block is correctly tagged before adding it to the grid
+            //checks for tag on piece
             if (CompareTag("SpecialPiece"))
             {
-                block.tag = "SpecialPiece";  // Force correct tag
+                block.tag = "SpecialPiece";  // force correct tag
             }
 
             grid.AddBlockToGrid(block, position);

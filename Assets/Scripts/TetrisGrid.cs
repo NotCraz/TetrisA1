@@ -57,14 +57,14 @@ public class TetrisGrid : MonoBehaviour
     {
         int linesCleared = 0;
 
-        // Loop through all rows in the grid
+        // loops through all rows in the grid
         for (int y = 0; y < height; y++)
         {
             bool containsSpecialPiece = false;
 
             for (int x = 0; x < width; x++)
             {
-                if (grid[x, y] != null && grid[x, y].CompareTag("SpecialPiece"))
+                if (grid[x, y] != null && grid[x, y].CompareTag("SpecialPiece"))//checks if special piece tag is implemented
                 {
                     containsSpecialPiece = true;
                     
@@ -72,12 +72,12 @@ public class TetrisGrid : MonoBehaviour
                 }
             }
 
-            if (containsSpecialPiece)
+            if (containsSpecialPiece) //if special piece tag then does the clear
             {
                 
                 ClearLine(y);
                 ShiftRowsDown(y);
-                y--; // Recheck the current row after shifting
+                y--; // recheck the current row after shifting
                 linesCleared++;
             }
         }
@@ -92,10 +92,10 @@ public class TetrisGrid : MonoBehaviour
     {
         for (int x = 0; x < width; x++)
         {
-            if (grid[x, rowNumber] != null) // Check if the cell is not null
+            if (grid[x, rowNumber] != null) 
             {
-                Destroy(grid[x, rowNumber].gameObject); // Destroy the block
-                grid[x, rowNumber] = null; // Remove reference in grid
+                Destroy(grid[x, rowNumber].gameObject); 
+                grid[x, rowNumber] = null; 
             }
         }
     }

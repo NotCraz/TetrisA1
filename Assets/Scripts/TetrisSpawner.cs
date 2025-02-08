@@ -21,6 +21,7 @@ public class TetrisSpawner : MonoBehaviour
 
     public void SpawnPiece()
     {
+        //calculate top center of grid and spawn there
         Vector3 spawnPosition = new Vector3(Random.Range(1, grid.width - 3), grid.height - 3, 0);
 
         if (nextPiece != null)
