@@ -9,6 +9,7 @@ public class TetrisGrid : MonoBehaviour
     private Transform[,] grid;
     public Transform[,] debugGrid;
     TetrisManager tetrisManager;
+    TetrisSpawner spawner;
      void Awake()
     {
         tetrisManager = FindObjectOfType <TetrisManager>();
@@ -52,12 +53,50 @@ public class TetrisGrid : MonoBehaviour
         return true;
     }
 
+    public void SpecialClear()
+    {
+        int linesCleared = 0;
+
+        // Loop through all rows in the grid
+        for (int y = 0; y < height; y++)
+        {
+            bool containsSpecialPiece = false;
+
+            for (int x = 0; x < width; x++)
+            {
+                if (grid[x, y] != null && grid[x, y].CompareTag("SpecialPiece"))
+                {
+                    containsSpecialPiece = true;
+                    
+                    break;
+                }
+            }
+
+            if (containsSpecialPiece)
+            {
+                
+                ClearLine(y);
+                ShiftRowsDown(y);
+                y--; // Recheck the current row after shifting
+                linesCleared++;
+            }
+        }
+
+        if (linesCleared > 0)
+        {
+           
+            tetrisManager.CalculateScore(linesCleared);
+        }
+    }
     public void ClearLine(int rowNumber)
     {
         for (int x = 0; x < width; x++)
         {
-            Destroy(grid[x,rowNumber].gameObject); //detroy game objects in cell(s)
-            grid[x,rowNumber] = null; //remove reference in grid
+            if (grid[x, rowNumber] != null) // Check if the cell is not null
+            {
+                Destroy(grid[x, rowNumber].gameObject); // Destroy the block
+                grid[x, rowNumber] = null; // Remove reference in grid
+            }
         }
     }
 

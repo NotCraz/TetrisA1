@@ -84,14 +84,24 @@ public class TetrisPiece : MonoBehaviour
 
     private void LockPiece()
     {
-        foreach(Transform block in transform)
+        foreach (Transform block in transform)
         {
             Vector2Int position = Vector2Int.RoundToInt(block.position);
-            grid.AddBlockToGrid(block, position); // add block to grid 
+
+            // Ensure the block is correctly tagged before adding it to the grid
+            if (CompareTag("SpecialPiece"))
+            {
+                block.tag = "SpecialPiece";  // Force correct tag
+            }
+
+            grid.AddBlockToGrid(block, position);
+           
         }
-        grid.ClearFullLines();//check for full lines 
+
+        grid.SpecialClear();
+        grid.ClearFullLines();
         FindObjectOfType<TetrisSpawner>().SpawnPiece();
-        Destroy(this); //remove this script
+        Destroy(this);
     }
 
     private void RotatePiece()
